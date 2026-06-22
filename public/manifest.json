@@ -2,19 +2,19 @@
   "name": "Episode Air Status Checker",
   "short_name": "Episode Tracker",
   "description": "Find out if the latest episode of any show or anime has aired yet.",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#0f0f13",
   "theme_color": "#7c6fea",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
