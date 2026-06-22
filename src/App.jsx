@@ -418,6 +418,13 @@ export default function App() {
     if (e.key === "Enter") checkShow(query);
   }
 
+  function handleClear() {
+    setQuery("");
+    setStatus(STATUS.IDLE);
+    setResult(null);
+    setError("");
+  }
+
   return (
     <div className="min-h-screen w-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 flex items-start justify-center px-4 py-16">
       <div className="w-full max-w-xl flex flex-col gap-6">
@@ -445,16 +452,29 @@ export default function App() {
         </header>
 
         <div className="flex gap-2">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="e.g. One Piece, The Bear, Arcane, Demon Slayer..."
-            disabled={status === STATUS.LOADING}
-            aria-label="Show or anime name"
-            className="flex-1 bg-slate-100/50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-950 dark:text-slate-100 rounded-lg px-4 py-2 text-base outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-500"
-          />
+          <div className="flex-1 relative flex items-center">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="e.g. One Piece, The Bear, Arcane, Demon Slayer..."
+              disabled={status === STATUS.LOADING}
+              aria-label="Show or anime name"
+              className="w-full bg-slate-100/50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-950 dark:text-slate-100 rounded-lg px-4 py-2 pr-10 text-base outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            />
+            {query && (
+              <button
+                onClick={handleClear}
+                disabled={status === STATUS.LOADING}
+                className="absolute right-2 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
+                title="Clear search"
+                aria-label="Clear search"
+              >
+                <i className="ti ti-x text-lg" aria-hidden="true" />
+              </button>
+            )}
+          </div>
           <button
             onClick={() => checkShow(query)}
             disabled={status === STATUS.LOADING || !query.trim()}
